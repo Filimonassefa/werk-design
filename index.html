@@ -1,170 +1,219 @@
+
 <!DOCTYPE html>
 <html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ወርቅ ዲዛይን | Werk Design</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;1,700&family=Tenor+Sans&display=swap" rel="stylesheet">
     
     <style>
+        /* --- LUXURY MOBILE ADAPTATION --- */
+@media (max-width: 768px) {
+    /* 1. Rescale the Hero Text */
+    #hero h1 { 
+        font-size: 3.5rem; /* Smaller but still bold */
+        line-height: 1;
+    }
+    .word-woven { padding-left: 0; } /* Center it for mobile */
+    .word-middle { padding-left: 0; font-size: 0.5em; }
+
+    /* 2. Fix the Navigation */
+    nav {
+        padding: 1rem 0.5rem;
+        grid-template-columns: 1fr; /* Stack logo above links */
+        gap: 0.5rem;
+    }
+    .nav-links {
+        gap: 1.5rem; /* Tighter spacing so links fit in one row */
+    }
+    .nav-links a {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    /* 3. The "Infinite Scroll" Gallery */
+    #archive {
+        padding: 10vh 5%;
+    }
+    .gallery-wrap {
+        height: auto; /* Let the page grow naturally */
+        display: flex;
+        flex-direction: column;
+        gap: 80px; /* Space between the "exhibits" */
+    }
+    .item {
+        position: relative !important; /* Undo the absolute positioning from PC */
+        width: 100% !important; /* Make images full width */
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+    }
+    .item img {
+        height: 60vh; /* Slightly shorter for mobile viewing */
+    }
+
+    /* 4. The Final Button */
+    .btn-order-main {
+        width: 80%; /* Easier to tap with thumbs */
+        padding: 20px 0;
+        text-align: center;
+    }
+}
         :root {
-            --gold: #D4AF37;
-            --black: #0a0a0a;
-            --white: #ffffff;
-            --cream: #F9F9F7;
+            --gold-gradient: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8B6508 100%);
+            --bright-gold: #D4AF37;
+            --pure-white: #ffffff;
+            --alabaster: #F9F9F7;
+            --charcoal: #0a0a0a;
+            --ease-luxury: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* --- CORE RESET --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Tenor Sans', sans-serif; 
-            background: var(--white); 
-            color: var(--black); 
-            line-height: 1.6;
-            overflow-x: hidden;
+        body { margin: 0; font-family: 'Tenor Sans', sans-serif; background-color: var(--pure-white); color: var(--charcoal); overflow-x: hidden; }
+        h1, h2, h3, .serif { font-family: 'Bodoni Moda', serif; font-weight: 400; margin: 0; }
+
+        /* THE BLACK & GOLD HEADER */
+        nav { 
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 0; 
+            background: var(--charcoal); z-index: 2000; 
+            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; 
+            border-bottom: 1px solid var(--bright-gold);
+        }
+        .nav-links { list-style: none; display: flex; gap: 3rem; padding: 0; justify-content: center; }
+        .nav-links a { font-size: 0.7rem; letter-spacing: 0.2rem; text-transform: uppercase; color: rgba(243, 229, 171, 0.6); transition: 0.4s; text-decoration: none; }
+        .nav-links a:hover { color: var(--bright-gold); letter-spacing: 0.3rem; }
+        .logo-main { font-size: 1.8rem; text-align: center; letter-spacing: 3px; }
+
+        .gold-glow {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* --- NAVIGATION (ALWAYS VISIBLE) --- */
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: var(--black); padding: 1.5rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--gold);
-        }
-        .logo { font-family: 'Bodoni Moda', serif; color: var(--gold); font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; }
-        .nav-links a { color: #888; text-decoration: none; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; margin-left: 20px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
+        /* --- DRAMATIC WOVEN TEXT ANIMATION --- */
+        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--alabaster); }
+        #hero h1 { font-size: 7.5rem; line-height: 0.85; text-align: center; }
+        
+        .word-heritage { display: block; transform: translateX(-150px); opacity: 0; transition: all 1.8s var(--ease-luxury); }
+        .word-woven { display: block; padding-left: 15%; transform: translateX(150px); opacity: 0; transition: all 1.8s var(--ease-luxury); transition-delay: 0.4s; }
+        .word-middle { display: block; font-style: italic; color: #888; font-size: 0.35em; padding-left: 22%; letter-spacing: 5px; transform: translateY(30px); opacity: 0; transition: 1.5s ease; transition-delay: 1s; }
 
-        /* --- HERO SECTION --- */
-        header {
-            height: 90vh; display: flex; align-items: center; justify-content: center;
-            background: var(--cream); text-align: center; padding: 0 10%;
-        }
-        header h1 { 
-            font-family: 'Bodoni Moda', serif; 
-            font-size: clamp(2.5rem, 8vw, 6rem); 
-            line-height: 1.1; 
-        }
-        header h1 span { display: block; color: var(--gold); }
+        .hero-content.active .word-heritage,
+        .hero-content.active .word-woven { transform: translateX(0); opacity: 1; }
+        .hero-content.active .word-middle { transform: translateY(0); opacity: 1; }
 
-        /* --- THE GALLERY (FIXED: NO CHUNKY OVERLAPS) --- */
-        .gallery-container {
-            padding: 100px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
+        /* --- GALLERY GRID --- */
+        #archive { padding: 20vh 5% 10vh; background-color: var(--pure-white); }
+        .gallery-wrap { position: relative; height: 350vh; max-width: 1400px; margin: 0 auto; }
+        .item { position: absolute; transition: 1.2s var(--ease-luxury); }
+        .item img { width: 100%; height: 75vh; object-fit: cover; transition: 0.8s var(--ease-luxury); box-shadow: 0 20px 60px rgba(0,0,0,0.05); border: 1px solid transparent; }
+        .item:hover img { transform: scale(1.02); border-color: var(--bright-gold); }
+
+        /* Item Positions */
+        .item.one { width: 45%; top: 0; left: 0; }
+        .item.two { width: 48%; top: 30vh; right: 0; }
+        .item.three { width: 38%; top: 100vh; left: 10%; }
+        .item.four { width: 42%; top: 165vh; right: 5%; }
+        .item.five { width: 40%; top: 210vh; left: 0%; }
+        .item.six { width: 50%; top: 260vh; right: 10%; }
+
+        .meta { margin-top: 1.5rem; padding-left: 15px; border-left: 1px solid var(--bright-gold); }
+        .meta h3 { font-size: 1.2rem; color: var(--charcoal); }
+        .meta p { font-size: 0.65rem; color: var(--bright-gold); text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- THE FINAL CTA BUTTON --- */
+        .final-cta-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 100px 0 150px;
+            background: var(--pure-white);
         }
 
-        /* This grid works on PC (3 columns) and Mobile (1 column) automatically */
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-
-        .item { text-decoration: none; color: inherit; display: block; }
-        .item img {
-            width: 100%;
-            height: 70vh; /* Consistent height for a clean look */
-            object-fit: cover;
-            border: 1px solid #eee;
-            transition: 0.5s ease;
-        }
-        .item:hover img { border-color: var(--gold); transform: scale(1.01); }
-
-        .meta { margin-top: 15px; border-left: 2px solid var(--gold); padding-left: 15px; }
-        .meta h3 { font-family: 'Bodoni Moda', serif; font-size: 1.2rem; }
-        .meta p { font-size: 0.6rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
-
-        /* --- THE FINAL CTA --- */
-        .cta-section {
-            padding: 80px 5% 150px;
-            text-align: center;
-        }
-        .order-btn {
-            display: inline-block;
-            padding: 20px 60px;
-            background: var(--black);
-            color: var(--gold);
+        .btn-order-main {
+            padding: 25px 80px;
+            background: var(--charcoal);
+            color: var(--bright-gold);
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            border: 1px solid var(--gold);
-            transition: 0.4s;
-        }
-        .order-btn:hover { background: var(--gold); color: white; }
-
-        /* --- MOBILE SPECIFIC TWEAKS --- */
-        @media (max-width: 768px) {
-            header { height: 70vh; }
-            .item img { height: 50vh; } /* Shorter images for mobile comfort */
-            .main-grid { gap: 40px; }
-            .order-btn { width: 100%; }
-            nav { flex-direction: column; gap: 10px; padding: 1rem; }
-            .nav-links a { margin: 0 10px; }
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            border: 1px solid var(--bright-gold);
+            transition: 0.5s var(--ease-luxury);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        footer { padding: 4rem 0; background: var(--black); color: white; text-align: center; font-size: 0.6rem; letter-spacing: 2px; }
+        .btn-order-main:hover {
+            background: var(--bright-gold);
+            color: var(--pure-white);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Global Reveal */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1.5s var(--ease-luxury); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { padding: 5rem 0; background: var(--charcoal); color: white; text-align: center; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">ወርቅ ዲዛይን</a>
-        <div class="nav-links">
-            <a href="index.html">Collection</a>
-            <a href="contact.html">Contact</a>
-        </div>
+        <ul class="nav-links">
+            <li><a href="#hero">Collection</a></li>
+            <li><a href="#archive">The Archive</a></li>
+        </ul>
+        <div class="logo-main serif gold-glow">ወርቅ ዲዛይን</div>
+        <ul class="nav-links">
+            <li><a href="#archive">Origins</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <header>
-        <h1>Heritage <br> <span>Timelessly Woven</span></h1>
-    </header>
+    <section id="hero">
+        <div class="hero-content" id="hero-trigger">
+            <h1>
+                <span class="gold-glow word-heritage">Heritage</span>
+                <span class="word-middle">TIMELESSLY</span>
+                <span class="gold-glow word-woven">Woven.</span>
+            </h1>
+            </div>
+    </section>
 
-    <section class="gallery-container">
-        <div class="main-grid">
-            
-            <a href="order.html" class="item">
-                <img src="AxumiteMajesty.jpg" alt="Axumite Majesty">
-                <div class="meta"><h3>Axumite Majesty</h3><p>Secure Your Piece</p></div>
-            </a>
-
-            <a href="order.html" class="item">
-                <img src="LalibelaWrap.jpg" alt="Lalibela Wrap">
-                <div class="meta"><h3>Lalibela Wrap</h3><p>Secure Your Piece</p></div>
-            </a>
-
-            <a href="order.html" class="item">
-                <img src="SabaEssence.jpg" alt="Saba Essence">
-                <div class="meta"><h3>Saba Essence</h3><p>Secure Your Piece</p></div>
-            </a>
-
-            <a href="order.html" class="item">
-                <img src="HeritageGala.jpg" alt="Heritage Gala">
-                <div class="meta"><h3>Heritage Gala</h3><p>Secure Your Piece</p></div>
-            </a>
-
-            <a href="order.html" class="item">
-                <img src="TiletModern.jpg" alt="Tilet Modern">
-                <div class="meta"><h3>Tilet Modern</h3><p>Secure Your Piece</p></div>
-            </a>
-
-            <a href="order.html" class="item">
-                <img src="HighlandSilk.jpg" alt="Highland Silk">
-                <div class="meta"><h3>Highland Silk</h3><p>Secure Your Piece</p></div>
-            </a>
-
+    <section id="archive">
+        <div class="gallery-wrap">
+            <div class="item one reveal"><a href="order.html"><img src="AxumiteMajesty.jpg"></a><div class="meta"><h3>Axumite Majesty</h3><p>Click to order</p></div></div>
+            <div class="item two reveal"><a href="order.html"><img src="LalibelaWrap.jpg"></a><div class="meta"><h3>Lalibela Wrap</h3><p>Click to order</p></div></div>
+            <div class="item three reveal"><a href="order.html"><img src="SabaEssence.jpg"></a><div class="meta"><h3>Saba Essence</h3><p>Click to order</p></div></div>
+            <div class="item four reveal"><a href="order.html"><img src="HeritageGala.jpg"></a><div class="meta"><h3>Heritage Gala</h3><p>Click to order</p></div></div>
+            <div class="item five reveal"><a href="order.html"><img src="TiletModern.jpg"></a><div class="meta"><h3>Tilet Modern</h3><p>Click to order</p></div></div>
+            <div class="item six reveal"><a href="order.html"><img src="HighlandSilk.jpg"></a><div class="meta"><h3>Highland Silk</h3><p>Click to order</p></div></div>
         </div>
     </section>
 
-    <div class="cta-section">
-        <a href="order.html" class="order-btn">Place Order</a>
+    <div class="final-cta-wrap reveal">
+        <a href="order.html" class="btn-order-main">Place Order</a>
     </div>
 
     <footer>
-        <p>ወርቅ ዲዛይን // ADDIS ABABA // 2026</p>
+        <div class="logo-main serif gold-glow" style="margin-bottom: 20px;">ወርቅ ዲዛይን</div>
+        <p style="font-size: 0.6rem; letter-spacing: 2px; color: #555;">ADDIS ABABA // NEW YORK // LONDON</p>
     </footer>
 
+    <script>
+        window.addEventListener("load", () => {
+            document.getElementById("hero-trigger").classList.add("active");
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
