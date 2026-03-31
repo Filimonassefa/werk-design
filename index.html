@@ -3,158 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ወርቅ ዲዛይን | Werk Design - Heritage Elevated</title>
+    <title>ወርቅ ዲዛይን | Werk Design</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;1,700&family=Tenor+Sans&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --gold-gradient: linear-gradient(to bottom, #BF953F 0%, #FCF6BA 30%, #B38728 50%, #FBF5B7 70%, #AA771C 100%);
-            --champagne-gold: #CFB53B;
+            --gold-gradient: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8B6508 100%);
+            --bright-gold: #D4AF37;
             --pure-white: #ffffff;
-            --alabaster: #FBFBF9;
-            --charcoal: #1A1A1A;
-            /* Ultra-smooth timing function */
+            --alabaster: #F9F9F7;
+            --charcoal: #0a0a0a;
             --ease-luxury: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        html { scroll-behavior: smooth; }
-        body { margin: 0; font-family: 'Tenor Sans', sans-serif; background-color: var(--pure-white); color: var(--charcoal); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body { margin: 0; font-family: 'Tenor Sans', sans-serif; background-color: var(--pure-white); color: var(--charcoal); overflow-x: hidden; }
         h1, h2, h3, .serif { font-family: 'Bodoni Moda', serif; font-weight: 400; margin: 0; }
+
+        /* THE BLACK & GOLD HEADER */
+        nav { 
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 0; 
+            background: var(--charcoal); z-index: 2000; 
+            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; 
+            border-bottom: 1px solid var(--bright-gold);
+        }
+        .nav-links { list-style: none; display: flex; gap: 3rem; padding: 0; justify-content: center; }
+        .nav-links a { font-size: 0.7rem; letter-spacing: 0.2rem; text-transform: uppercase; color: rgba(243, 229, 171, 0.6); transition: 0.4s; text-decoration: none; }
+        .nav-links a:hover { color: var(--bright-gold); letter-spacing: 0.3rem; }
+        .logo-main { font-size: 1.8rem; text-align: center; letter-spacing: 3px; }
 
         .gold-glow {
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
-            filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
-            text-shadow: 0px 8px 15px rgba(191, 149, 63, 0.25), 0px 20px 40px rgba(0, 0, 0, 0.08);
-            font-weight: 700;
         }
 
-        /* --- THE ANIMATION ENGINE --- */
-        .reveal { 
-            opacity: 0; 
-            transition: opacity 1.8s var(--ease-luxury), transform 2s var(--ease-luxury); 
-        }
-
-        /* Initial Positions (Disconnected) */
-        .from-left { transform: translateX(-80px); }
-        .from-right { transform: translateX(80px); }
-        .from-bottom { transform: translateY(100px); }
-
-        /* Final Position (The Overlap) */
-        .reveal.active { 
-            opacity: 1; 
-            transform: translate(0, 0); 
-        }
-
-        /* --- Navigation --- 
-        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); z-index: 1000; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 1px solid rgba(207, 181, 59, 0.1); }
-        .nav-links { list-style: none; display: flex; gap: 2.5rem; padding: 0; justify-content: center; }
-        .nav-links a { font-size: 0.75rem; letter-spacing: 0.2rem; text-transform: uppercase; color: #777; transition: 0.3s; text-decoration: none; }
-        .nav-links a:hover { color: var(--champagne-gold); }
-        .logo-main { font-size: 2rem; text-align: center; letter-spacing: 2px; }*/
-
-        /* --- THE LUXURY BLACK & GOLD HEADER --- */
-nav { 
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    padding: 1.2rem 0; 
-    background: #0a0a0a; /* Deep Black */
-    z-index: 2000; 
-    display: grid; 
-    grid-template-columns: 1fr auto 1fr; 
-    align-items: center; 
-    /* The "Touch of Gold" border at the bottom */
-    border-bottom: 1px solid transparent;
-    border-image: linear-gradient(to right, transparent, #D4AF37, transparent);
-    border-image-slice: 1;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.nav-links { 
-    list-style: none; 
-    display: flex; 
-    gap: 3rem; 
-    padding: 0; 
-    justify-content: center; 
-}
-
-.nav-links a { 
-    font-size: 0.7rem; 
-    letter-spacing: 0.25rem; 
-    text-transform: uppercase; 
-    color: rgba(243, 229, 171, 0.5); /* Muted Champagne */
-    transition: 0.4s var(--ease-luxury); 
-    text-decoration: none; 
-    font-weight: 400;
-}
-
-/* Smooth Gold Glow on Hover */
-.nav-links a:hover { 
-    color: #FFD700; 
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-    letter-spacing: 0.3rem; /* Slight expansion effect */
-}
-
-.logo-main { 
-    font-size: 1.8rem; 
-    text-align: center; 
-    letter-spacing: 3px; 
-    /* Ensuring logo is bright against black */
-    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
-}
-
-        /* --- Hero --- */
-        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--alabaster); position: relative; }
-        .hero-content h1 { font-size: 7.5rem; line-height: 0.85; text-align: left; }
-        .hero-subtext { font-style: italic; font-size: 1.1rem; color: #555; margin: 2rem 0; max-width: 450px; border-left: 1px solid var(--champagne-gold); padding-left: 20px; }
-        .btn-gold-line { display: inline-block; padding: 1.2rem 3.5rem; border: 1px solid var(--champagne-gold); color: var(--champagne-gold); font-size: 0.75rem; letter-spacing: 0.3rem; text-transform: uppercase; background: transparent; transition: 0.5s var(--ease-luxury); cursor: pointer; text-decoration: none; }
-        .btn-gold-line:hover { background-color: var(--champagne-gold); color: white; box-shadow: 0 10px 30px rgba(207, 181, 59, 0.3); }
-
-        /* --- Gallery Structure --- */
-        #archive { padding: 20vh 5%; background-color: var(--pure-white); }
-        .section-tag { text-align: center; font-size: 0.65rem; letter-spacing: 0.6rem; text-transform: uppercase; color: #bbb; margin-bottom: 15vh; }
+        /* --- DRAMATIC WOVEN TEXT ANIMATION --- */
+        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--alabaster); }
+        #hero h1 { font-size: 7.5rem; line-height: 0.85; text-align: center; }
         
-        .gallery-wrap { position: relative; height: 320vh; max-width: 1400px; margin: 0 auto; }
-        .item { position: absolute; overflow: visible; }
-        .item img { width: 100%; height: 75vh; object-fit: cover; transition: 1.2s var(--ease-luxury); box-shadow: 0 20px 50px rgba(0,0,0,0.04); }
-        .item:hover img { transform: scale(1.03); box-shadow: 0 30px 70px rgba(0,0,0,0.08); }
+        .word-heritage { display: block; transform: translateX(-150px); opacity: 0; transition: all 1.8s var(--ease-luxury); }
+        .word-woven { display: block; padding-left: 15%; transform: translateX(150px); opacity: 0; transition: all 1.8s var(--ease-luxury); transition-delay: 0.4s; }
+        .word-middle { display: block; font-style: italic; color: #888; font-size: 0.35em; padding-left: 22%; letter-spacing: 5px; transform: translateY(30px); opacity: 0; transition: 1.5s ease; transition-delay: 1s; }
 
-        /* Magnetic Overlap Positions */
-        .item.one { width: 45%; top: 0; left: 0; z-index: 2; transition-delay: 0.1s; }
-        .item.two { width: 48%; top: 25vh; right: 0; z-index: 1; transition-delay: 0.3s; }
-        .item.three { width: 38%; top: 95vh; left: 15%; z-index: 3; transition-delay: 0.5s; }
+        .hero-content.active .word-heritage,
+        .hero-content.active .word-woven { transform: translateX(0); opacity: 1; }
+        .hero-content.active .word-middle { transform: translateY(0); opacity: 1; }
 
-        .item.four { width: 42%; top: 160vh; right: 5%; z-index: 2; transition-delay: 0.2s; }
-        .item.five { width: 40%; top: 200vh; left: 0%; z-index: 1; transition-delay: 0.4s; }
-        .item.six { width: 50%; top: 245vh; right: 15%; z-index: 3; transition-delay: 0.6s; }
+        /* --- GALLERY GRID --- */
+        #archive { padding: 20vh 5% 10vh; background-color: var(--pure-white); }
+        .gallery-wrap { position: relative; height: 350vh; max-width: 1400px; margin: 0 auto; }
+        .item { position: absolute; transition: 1.2s var(--ease-luxury); }
+        .item img { width: 100%; height: 75vh; object-fit: cover; transition: 0.8s var(--ease-luxury); box-shadow: 0 20px 60px rgba(0,0,0,0.05); border: 1px solid transparent; }
+        .item:hover img { transform: scale(1.02); border-color: var(--bright-gold); }
 
-        .meta { margin-top: 2rem; padding-left: 15px; border-left: 1px solid var(--champagne-gold); }
-        .meta h3 { font-size: 1.4rem; letter-spacing: 1px; color: var(--charcoal); }
-        .meta p { font-size: 0.75rem; color: #999; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
+        /* Item Positions */
+        .item.one { width: 45%; top: 0; left: 0; }
+        .item.two { width: 48%; top: 30vh; right: 0; }
+        .item.three { width: 38%; top: 100vh; left: 10%; }
+        .item.four { width: 42%; top: 165vh; right: 5%; }
+        .item.five { width: 40%; top: 210vh; left: 0%; }
+        .item.six { width: 50%; top: 260vh; right: 10%; }
 
-        #narrative { padding: 25vh 15%; text-align: center; background: var(--alabaster); }
-        #narrative h2 { font-size: 3.5rem; margin-bottom: 2rem; }
-        #narrative p { font-size: 1.25rem; line-height: 2.2; color: #555; font-weight: 300; max-width: 750px; margin: 0 auto; }
+        .meta { margin-top: 1.5rem; padding-left: 15px; border-left: 1px solid var(--bright-gold); }
+        .meta h3 { font-size: 1.2rem; color: var(--charcoal); }
+        .meta p { font-size: 0.65rem; color: var(--bright-gold); text-transform: uppercase; letter-spacing: 2px; }
 
-        footer { padding: 8rem 5% 4rem; background: var(--charcoal); color: var(--alabaster); text-align: center; }
-        .footer-logo { font-size: 3rem; margin-bottom: 2rem; }
-        .socials { display: flex; justify-content: center; gap: 3rem; margin: 3rem 0; font-size: 0.75rem; letter-spacing: 2px; }
-        .socials a { color: var(--alabaster); text-decoration: none; opacity: 0.5; transition: 0.3s; }
-        .socials a:hover { opacity: 1; color: var(--champagne-gold); }
-
-        @media (max-width: 900px) {
-            .hero-content h1 { font-size: 3.5rem; }
-            .item { position: relative !important; width: 100% !important; left: 0 !important; top: 0 !important; margin-bottom: 8rem; }
-            .gallery-wrap { height: auto; }
-            nav { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
-            .nav-links { display: none; }
+        /* --- THE FINAL CTA BUTTON --- */
+        .final-cta-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 100px 0 150px;
+            background: var(--pure-white);
         }
+
+        .btn-order-main {
+            padding: 25px 80px;
+            background: var(--charcoal);
+            color: var(--bright-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            border: 1px solid var(--bright-gold);
+            transition: 0.5s var(--ease-luxury);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .btn-order-main:hover {
+            background: var(--bright-gold);
+            color: var(--pure-white);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Global Reveal */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1.5s var(--ease-luxury); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { padding: 5rem 0; background: var(--charcoal); color: white; text-align: center; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -166,96 +114,53 @@ nav {
         </ul>
         <div class="logo-main serif gold-glow">ወርቅ ዲዛይን</div>
         <ul class="nav-links">
-            <li><a href="#narrative">Origins</a></li>
+            <li><a href="#archive">Origins</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
     <section id="hero">
-        <div class="hero-content reveal from-bottom active">
+        <div class="hero-content" id="hero-trigger">
             <h1>
-                <span class="gold-glow">Heritage</span><br>
-                <span style="font-style: italic; color: #444; font-size: 0.35em; padding-left: 22%; opacity: 0.6; letter-spacing: 4px;">DRAMATICALLY</span><br>
-                <span class="gold-glow" style="padding-left: 15%;">Woven.</span>
+                <span class="gold-glow word-heritage">Heritage</span>
+                <span class="word-middle">TIMELESSLY</span>
+                <span class="gold-glow word-woven">Woven.</span>
             </h1>
-            <div class="hero-subtext">
-                A visual narrative of Ethiopian elegance, captured in thread and time.
             </div>
-            <a href="#archive" class="btn-gold-line">Enter Archive</a>
-        </div>
-    </section>
-
-    <section id="narrative">
-        <div class="reveal from-bottom">
-            <h2 class="serif">The Poetry of Presence</h2>
-            <p>We do not simply clothe the body; we adorn the spirit with history. Each piece is a hand-loomed conversation between the ancient soil of Axum and the contemporary lights of the world stage.</p>
-        </div>
     </section>
 
     <section id="archive">
-        <div class="section-tag">Visual Curations // Edition I</div>
         <div class="gallery-wrap">
-            
-            <div class="item one reveal from-left">
-                <img src="AxumiteMajesty.jpg" alt="Axumite Majesty">
-                <div class="meta"><h3>Axumite Majesty</h3><p>Gold Tilf Detail</p></div>
-            </div>
-
-            <div class="item two reveal from-right">
-                <img src="LalibelaWrap.jpg" alt="The Lalibela Wrap">
-                <div class="meta"><h3>Lalibela Wrap</h3><p>Heritage Weave</p></div>
-            </div>
-
-            <div class="item three reveal from-bottom">
-                <img src="SabaEssence.jpg" alt="Saba Essence">
-                <div class="meta"><h3>Saba Essence</h3><p>The Golden Drape</p></div>
-            </div>
-
-            <div class="item four reveal from-right">
-                <img src="HeritageGala.jpg" alt="Heritage Gala">
-                <div class="meta"><h3>Heritage Gala</h3><p>Ceremonial Silk</p></div>
-            </div>
-
-            <div class="item five reveal from-left">
-                <img src="TiletModern.jpg" alt="Tilet Modern">
-                <div class="meta"><h3>Tilet Modern</h3><p>Sculptural Form</p></div>
-            </div>
-
-            <div class="item six reveal from-bottom">
-                <img src="HighlandSilk.jpg" alt="Highland Silk">
-                <div class="meta"><h3>Highland Silk</h3><p>Artisan Edition</p></div>
-            </div>
-
+            <div class="item one reveal"><a href="order.html"><img src="AxumiteMajesty.jpg"></a><div class="meta"><h3>Axumite Majesty</h3><p>Click to order</p></div></div>
+            <div class="item two reveal"><a href="order.html"><img src="LalibelaWrap.jpg"></a><div class="meta"><h3>Lalibela Wrap</h3><p>Click to order</p></div></div>
+            <div class="item three reveal"><a href="order.html"><img src="SabaEssence.jpg"></a><div class="meta"><h3>Saba Essence</h3><p>Click to order</p></div></div>
+            <div class="item four reveal"><a href="order.html"><img src="HeritageGala.jpg"></a><div class="meta"><h3>Heritage Gala</h3><p>Click to order</p></div></div>
+            <div class="item five reveal"><a href="order.html"><img src="TiletModern.jpg"></a><div class="meta"><h3>Tilet Modern</h3><p>Click to order</p></div></div>
+            <div class="item six reveal"><a href="order.html"><img src="HighlandSilk.jpg"></a><div class="meta"><h3>Highland Silk</h3><p>Click to order</p></div></div>
         </div>
     </section>
 
+    <div class="final-cta-wrap reveal">
+        <a href="order.html" class="btn-order-main">Place Order</a>
+    </div>
+
     <footer>
-        <div class="footer-logo serif gold-glow">ወርቅ ዲዛይን</div>
-        <div class="socials">
-            <a href="https://wa.me/251930897394">WhatsApp</a>
-            <a href="https://www.instagram.com/werk302">INSTAGRAM</a>
-            <a href="#">PRIVATE ARCHIVE</a>
-        </div>
-        <div style="font-size: 0.6rem; opacity: 0.3; letter-spacing: 2px;">
-            &copy; 2024 WERK DESIGN. ADDIS ABABA // NEW YORK.
-        </div>
+        <div class="logo-main serif gold-glow" style="margin-bottom: 20px;">ወርቅ ዲዛይን</div>
+        <p style="font-size: 0.6rem; letter-spacing: 2px; color: #555;">ADDIS ABABA // NEW YORK // LONDON</p>
     </footer>
 
     <script>
-        const observerOptions = {
-            threshold: 0.15 // Triggers when 15% of the item is visible
-        };
+        window.addEventListener("load", () => {
+            document.getElementById("hero-trigger").classList.add("active");
+        });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
-
 </body>
 </html>
