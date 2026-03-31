@@ -9,6 +9,58 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;1,700&family=Tenor+Sans&display=swap" rel="stylesheet">
     
     <style>
+        /* --- LUXURY MOBILE ADAPTATION --- */
+@media (max-width: 768px) {
+    /* 1. Rescale the Hero Text */
+    #hero h1 { 
+        font-size: 3.5rem; /* Smaller but still bold */
+        line-height: 1;
+    }
+    .word-woven { padding-left: 0; } /* Center it for mobile */
+    .word-middle { padding-left: 0; font-size: 0.5em; }
+
+    /* 2. Fix the Navigation */
+    nav {
+        padding: 1rem 0.5rem;
+        grid-template-columns: 1fr; /* Stack logo above links */
+        gap: 0.5rem;
+    }
+    .nav-links {
+        gap: 1.5rem; /* Tighter spacing so links fit in one row */
+    }
+    .nav-links a {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    /* 3. The "Infinite Scroll" Gallery */
+    #archive {
+        padding: 10vh 5%;
+    }
+    .gallery-wrap {
+        height: auto; /* Let the page grow naturally */
+        display: flex;
+        flex-direction: column;
+        gap: 80px; /* Space between the "exhibits" */
+    }
+    .item {
+        position: relative !important; /* Undo the absolute positioning from PC */
+        width: 100% !important; /* Make images full width */
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+    }
+    .item img {
+        height: 60vh; /* Slightly shorter for mobile viewing */
+    }
+
+    /* 4. The Final Button */
+    .btn-order-main {
+        width: 80%; /* Easier to tap with thumbs */
+        padding: 20px 0;
+        text-align: center;
+    }
+}
         :root {
             --gold-gradient: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8B6508 100%);
             --bright-gold: #D4AF37;
