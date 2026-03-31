@@ -4,174 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ወርቅ ዲዛይን | Werk Design</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;1,700&family=Tenor+Sans&display=swap" rel="stylesheet">
     
     <style>
-        <style>
-    :root {
-        --gold-gradient: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8B6508 100%);
-        --bright-gold: #D4AF37;
-        --pure-white: #ffffff;
-        --alabaster: #F9F9F7;
-        --charcoal: #0a0a0a;
-        --ease-luxury: cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    body { 
-        margin: 0; 
-        font-family: 'Tenor Sans', sans-serif; 
-        background-color: var(--pure-white); 
-        color: var(--charcoal); 
-        overflow-x: hidden; 
-        width: 100%;
-    }
-
-    /* --- NAVIGATION: FIXED & CLEAN --- */
-    nav { 
-        position: fixed; top: 0; width: 100%; padding: 1rem 0; 
-        background: var(--charcoal); z-index: 2000; 
-        display: flex; flex-direction: column; align-items: center; gap: 10px;
-        border-bottom: 1px solid var(--bright-gold);
-    }
-    .logo-main { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; letter-spacing: 3px; }
-    .gold-glow { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    
-    .nav-links { list-style: none; display: flex; gap: 1.5rem; padding: 0; margin: 0; }
-    .nav-links a { font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(243, 229, 171, 0.6); text-decoration: none; }
-
-    /* --- HERO SECTION --- */
-    #hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--alabaster); text-align: center; padding: 0 20px; }
-    #hero h1 { font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 10vw, 7.5rem); line-height: 0.9; }
-    
-    .word-heritage, .word-woven { display: block; opacity: 0; transition: 1.8s var(--ease-luxury); }
-    .word-heritage { transform: translateX(-50px); }
-    .word-woven { transform: translateX(50px); }
-    .word-middle { display: block; font-style: italic; color: #888; font-size: 0.3em; letter-spacing: 5px; opacity: 0; transition: 1.5s ease; transition-delay: 0.8s; }
-
-    .hero-content.active .word-heritage, .hero-content.active .word-woven { transform: translateX(0); opacity: 1; }
-    .hero-content.active .word-middle { opacity: 1; }
-
-    /* --- GALLERY: PC MODE --- */
-    #archive { padding: 15vh 5%; }
-    .gallery-wrap { position: relative; max-width: 1400px; margin: 0 auto; }
-
-    /* For PC: Scattered Layout */
-    @media (min-width: 769px) {
-        .gallery-wrap { height: 350vh; }
-        .item { position: absolute; transition: 1.2s var(--ease-luxury); }
-        .item.one { width: 45%; top: 0; left: 0; }
-        .item.two { width: 48%; top: 30vh; right: 0; }
-        .item.three { width: 38%; top: 100vh; left: 10%; }
-        .item.four { width: 42%; top: 165vh; right: 5%; }
-        .item.five { width: 40%; top: 210vh; left: 0%; }
-        .item.six { width: 50%; top: 260vh; right: 10%; }
-        .item img { height: 75vh; }
-    }
-
-    /* --- MOBILE FIX (The "No More Chunky" Mode) --- */
-    @media (max-width: 768px) {
-        .gallery-wrap { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 60px; /* Perfect spacing between items */
-            height: auto !important; /* Forces page to flow naturally */
+        :root {
+            --gold: #D4AF37;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --cream: #F9F9F7;
         }
-        .item { 
-            position: relative !important; 
-            width: 100% !important; 
-            left: 0 !important; top: 0 !important; 
+
+        /* --- CORE RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Tenor Sans', sans-serif; 
+            background: var(--white); 
+            color: var(--black); 
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        .item img { 
-            height: 50vh; /* Controlled height so it fits the screen well */
+
+        /* --- NAVIGATION (ALWAYS VISIBLE) --- */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: var(--black); padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--gold);
+        }
+        .logo { font-family: 'Bodoni Moda', serif; color: var(--gold); font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; }
+        .nav-links a { color: #888; text-decoration: none; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; margin-left: 20px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 90vh; display: flex; align-items: center; justify-content: center;
+            background: var(--cream); text-align: center; padding: 0 10%;
+        }
+        header h1 { 
+            font-family: 'Bodoni Moda', serif; 
+            font-size: clamp(2.5rem, 8vw, 6rem); 
+            line-height: 1.1; 
+        }
+        header h1 span { display: block; color: var(--gold); }
+
+        /* --- THE GALLERY (FIXED: NO CHUNKY OVERLAPS) --- */
+        .gallery-container {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* This grid works on PC (3 columns) and Mobile (1 column) automatically */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .item { text-decoration: none; color: inherit; display: block; }
+        .item img {
             width: 100%;
+            height: 70vh; /* Consistent height for a clean look */
             object-fit: cover;
+            border: 1px solid #eee;
+            transition: 0.5s ease;
         }
-        .meta { padding-bottom: 20px; }
-    }
+        .item:hover img { border-color: var(--gold); transform: scale(1.01); }
 
-    .item img { width: 100%; object-fit: cover; box-shadow: 0 15px 40px rgba(0,0,0,0.08); border: 1px solid transparent; transition: 0.8s var(--ease-luxury); }
-    .item:hover img { border-color: var(--bright-gold); }
+        .meta { margin-top: 15px; border-left: 2px solid var(--gold); padding-left: 15px; }
+        .meta h3 { font-family: 'Bodoni Moda', serif; font-size: 1.2rem; }
+        .meta p { font-size: 0.6rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
 
-    .meta { margin-top: 1rem; border-left: 2px solid var(--bright-gold); padding-left: 15px; text-align: left; }
-    .meta h3 { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; }
-    .meta p { font-size: 0.6rem; color: var(--bright-gold); letter-spacing: 2px; text-transform: uppercase; margin: 5px 0 0; }
+        /* --- THE FINAL CTA --- */
+        .cta-section {
+            padding: 80px 5% 150px;
+            text-align: center;
+        }
+        .order-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            background: var(--black);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            border: 1px solid var(--gold);
+            transition: 0.4s;
+        }
+        .order-btn:hover { background: var(--gold); color: white; }
 
-    /* --- FINAL CTA --- */
-    .final-cta-wrap { display: flex; justify-content: center; padding: 60px 20px 100px; }
-    .btn-order-main { 
-        padding: 20px 40px; background: var(--charcoal); color: var(--bright-gold); 
-        text-decoration: none; text-transform: uppercase; font-size: 0.7rem; 
-        letter-spacing: 4px; border: 1px solid var(--bright-gold); transition: 0.4s;
-        width: 100%; max-width: 300px; text-align: center;
-    }
-    .btn-order-main:hover { background: var(--bright-gold); color: white; }
+        /* --- MOBILE SPECIFIC TWEAKS --- */
+        @media (max-width: 768px) {
+            header { height: 70vh; }
+            .item img { height: 50vh; } /* Shorter images for mobile comfort */
+            .main-grid { gap: 40px; }
+            .order-btn { width: 100%; }
+            nav { flex-direction: column; gap: 10px; padding: 1rem; }
+            .nav-links a { margin: 0 10px; }
+        }
 
-    /* Reveal animations */
-    .reveal { opacity: 0; transform: translateY(30px); transition: 1.2s var(--ease-luxury); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    footer { padding: 4rem 0; background: var(--charcoal); color: white; text-align: center; font-size: 0.6rem; letter-spacing: 2px; }
-</style>
+        footer { padding: 4rem 0; background: var(--black); color: white; text-align: center; font-size: 0.6rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <ul class="nav-links">
-            <li><a href="#hero">Collection</a></li>
-            <li><a href="#archive">The Archive</a></li>
-        </ul>
-        <div class="logo-main serif gold-glow">ወርቅ ዲዛይን</div>
-        <ul class="nav-links">
-            <li><a href="#archive">Origins</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+        <a href="#" class="logo">ወርቅ ዲዛይን</a>
+        <div class="nav-links">
+            <a href="index.html">Collection</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
-    <section id="hero">
-        <div class="hero-content" id="hero-trigger">
-            <h1>
-                <span class="gold-glow word-heritage">Heritage</span>
-                <span class="word-middle">TIMELESSLY</span>
-                <span class="gold-glow word-woven">Woven.</span>
-            </h1>
-            </div>
-    </section>
+    <header>
+        <h1>Heritage <br> <span>Timelessly Woven</span></h1>
+    </header>
 
-    <section id="archive">
-        <div class="gallery-wrap">
-            <div class="item one reveal"><a href="order.html"><img src="AxumiteMajesty.jpg"></a><div class="meta"><h3>Axumite Majesty</h3><p>Click to order</p></div></div>
-            <div class="item two reveal"><a href="order.html"><img src="LalibelaWrap.jpg"></a><div class="meta"><h3>Lalibela Wrap</h3><p>Click to order</p></div></div>
-            <div class="item three reveal"><a href="order.html"><img src="SabaEssence.jpg"></a><div class="meta"><h3>Saba Essence</h3><p>Click to order</p></div></div>
-            <div class="item four reveal"><a href="order.html"><img src="HeritageGala.jpg"></a><div class="meta"><h3>Heritage Gala</h3><p>Click to order</p></div></div>
-            <div class="item five reveal"><a href="order.html"><img src="TiletModern.jpg"></a><div class="meta"><h3>Tilet Modern</h3><p>Click to order</p></div></div>
-            <div class="item six reveal"><a href="order.html"><img src="HighlandSilk.jpg"></a><div class="meta"><h3>Highland Silk</h3><p>Click to order</p></div></div>
+    <section class="gallery-container">
+        <div class="main-grid">
+            
+            <a href="order.html" class="item">
+                <img src="AxumiteMajesty.jpg" alt="Axumite Majesty">
+                <div class="meta"><h3>Axumite Majesty</h3><p>Secure Your Piece</p></div>
+            </a>
+
+            <a href="order.html" class="item">
+                <img src="LalibelaWrap.jpg" alt="Lalibela Wrap">
+                <div class="meta"><h3>Lalibela Wrap</h3><p>Secure Your Piece</p></div>
+            </a>
+
+            <a href="order.html" class="item">
+                <img src="SabaEssence.jpg" alt="Saba Essence">
+                <div class="meta"><h3>Saba Essence</h3><p>Secure Your Piece</p></div>
+            </a>
+
+            <a href="order.html" class="item">
+                <img src="HeritageGala.jpg" alt="Heritage Gala">
+                <div class="meta"><h3>Heritage Gala</h3><p>Secure Your Piece</p></div>
+            </a>
+
+            <a href="order.html" class="item">
+                <img src="TiletModern.jpg" alt="Tilet Modern">
+                <div class="meta"><h3>Tilet Modern</h3><p>Secure Your Piece</p></div>
+            </a>
+
+            <a href="order.html" class="item">
+                <img src="HighlandSilk.jpg" alt="Highland Silk">
+                <div class="meta"><h3>Highland Silk</h3><p>Secure Your Piece</p></div>
+            </a>
+
         </div>
     </section>
 
-    <div class="final-cta-wrap reveal">
-        <a href="order.html" class="btn-order-main">Place Order</a>
+    <div class="cta-section">
+        <a href="order.html" class="order-btn">Place Order</a>
     </div>
 
     <footer>
-        <div class="logo-main serif gold-glow" style="margin-bottom: 20px;">ወርቅ ዲዛይን</div>
-        <p style="font-size: 0.6rem; letter-spacing: 2px; color: #555;">ADDIS ABABA // NEW YORK // LONDON</p>
+        <p>ወርቅ ዲዛይን // ADDIS ABABA // 2026</p>
     </footer>
 
-    <script>
-        window.addEventListener("load", () => {
-            document.getElementById("hero-trigger").classList.add("active");
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
